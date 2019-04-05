@@ -5,6 +5,7 @@ public class Movie extends Entity {
     private int year;
     private double price;
     private boolean onScreens;
+    private int bookings;
 
     public Movie(String id, String name, int year, double price, boolean onScreens) {
         super(id);
@@ -12,6 +13,7 @@ public class Movie extends Entity {
         this.year = year;
         this.price = price;
         this.onScreens = onScreens;
+        this.bookings = 0;
     }
 
     @Override
@@ -22,6 +24,7 @@ public class Movie extends Entity {
                 ", year=" + year +
                 ", price=" + price +
                 ", onScreens=" + onScreens +
+                ", bookings=" + bookings +
                 '}';
     }
 
@@ -56,4 +59,8 @@ public class Movie extends Entity {
     public void setOnScreens(boolean onScreens) {
         this.onScreens = onScreens;
     }
+
+    public int getBookings() { return bookings; }
+
+    public void setBookings(int bookings) { this.bookings = bookings; }
 }

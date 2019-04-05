@@ -47,18 +47,18 @@ public class Main extends Application {
         ClientService clientService = new ClientService(customerCardRepository);
         clientService.insert("1","Maria", "Popa", "1111111111111", LocalDate.of (1999,01,01), LocalDate.of(2000,01,01), 0);
         clientService.insert("2","Ion", "Dascal", "2222222222222", LocalDate.of (2000,07,25), LocalDate.of(2002,01,01), 7);
-        clientService.insert("1=3","Alex", "Morar", "3333333333333", LocalDate.of (1980,8,22), LocalDate.of(2007,01,01), 0);
-        clientService.insert("4","Mihai", "Pop", "444444444444", LocalDate.of (1977,9,11), LocalDate.of(2010,01,01), 10);
+        clientService.insert("3","Alex", "Morar", "3333333333333", LocalDate.of (1980,8,22), LocalDate.of(2007,01,01), 0);
+        clientService.insert("4","Mihai", "Pop", "4444444444444", LocalDate.of (1977,9,11), LocalDate.of(2010,01,01), 10);
         clientService.insert("5","Ana", "Ionescu", "5555555555555", LocalDate.of (2001,12,7), LocalDate.of(2018,01,01), 0);
 
 
 
         BookingService bookingService = new BookingService(bookingRepository, customerCardRepository, movieRepository );
         bookingService.insert("1", "1", "5", LocalDate.of(2007,10,04), LocalTime.of(12,45));
-        bookingService.insert("2", "7", "7", LocalDate.of(2009,7,07), LocalTime.of(13,00));
-        bookingService.insert("3", "9", "25", LocalDate.of(2010,12,21), LocalTime.of(21,30));
-        bookingService.insert("4", "112", "23", LocalDate.of(2015,5,12), LocalTime.of(20,45));
-        bookingService.insert("5", "42", "4", LocalDate.of(2014,9,17), LocalTime.of(19,15));
+        bookingService.insert("2", "2", "7", LocalDate.of(2009,7,07), LocalTime.of(13,00));
+        bookingService.insert("3", "3", "25", LocalDate.of(2010,12,21), LocalTime.of(21,30));
+        bookingService.insert("4", "4", "23", LocalDate.of(2015,5,12), LocalTime.of(20,45));
+        bookingService.insert("5", "5", "4", LocalDate.of(2014,9,17), LocalTime.of(19,15));
 
         mainController.setServices(movieService,clientService, bookingService);
 

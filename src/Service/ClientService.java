@@ -8,10 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClientService {
-    private IRepository < Client > cardRepository;
+    private IRepository < Client > clientRepository;
 
     public ClientService(IRepository < Client > clientRepository) {
-        this.cardRepository = cardRepository;
+
+        this.clientRepository = clientRepository;
     }
 
     /**
@@ -28,13 +29,13 @@ public class ClientService {
     public void insert(String id, String name, String surname, String CNP, LocalDate dateOfBirth,
                        LocalDate registrationDate, int bonusPoints) {
         Client card = new Client( id, name, surname, CNP, dateOfBirth, registrationDate, bonusPoints );
-        List < Client > all = new ArrayList <>( cardRepository.getAll() );
+        List < Client > all = new ArrayList <>( clientRepository.getAll() );
         for (Client cardToTestCNP : all) {
             if (CNP.equals( cardToTestCNP.getCNP() )) {
                 throw new ClientServiceException( String.format( "The %s CNP already exists", CNP ) );
             }
         }
-        cardRepository.insert( card );
+        clientRepository.insert( card );
     }
 
     /**
@@ -51,31 +52,31 @@ public class ClientService {
     public void update(String id, String name, String surname, String CNP, LocalDate dateOfBirth,
                        LocalDate registrationDate, int bonusPoints) {
         Client card = new Client( id, name, surname, CNP, dateOfBirth, registrationDate, bonusPoints );
-        List < Client > all = new ArrayList <>( cardRepository.getAll() );
+        List < Client > all = new ArrayList <>( clientRepository.getAll() );
         for (Client cardToTestCNP : all) {
             if (CNP.equals( cardToTestCNP.getCNP() ) &&
                     !CNP.equals( card.getCNP() )) {
                 throw new ClientServiceException( String.format( "The %s CNP already exists.", CNP ) );
             }
         }
-        cardRepository.update( card );
+        clientRepository.update( card );
     }
 
     public void remove(String id) {
-        cardRepository.remove( id );
+        clientRepository.remove( id );
     }
 
     public List < Client > getAll() {
-        return cardRepository.getAll();
+        return clientRepository.getAll();
     }
 
     public IRepository < Client > getCardRepository() {
-        return cardRepository;
+        return clientRepository;
     }
 
     public List < Client > fullTextSearch(String text) {
         List < Client > found = new ArrayList <>();
-        for (Client c : cardRepository.getAll()) {
+        for (Client c : clientRepository.getAll()) {
             if (( c.getId().contains( text ) ) ||
                     c.getSurname().contains( text ) ||
                     c.getCNP().contains( text ) ||
@@ -87,6 +88,15 @@ public class ClientService {
             }
         }
         return found;
+    }
+
+    public void luckyBonusPoints(LocalDate begin, LocalDate end, int bonus) {
+        for (Client c : clientRepository.getAll()) {
+//            if (c.getDateOfBirth().isAfter(birthday1) && c.getDateOfBirth().isBefore(birthday2)) {
+            if (c.getDateOfBirth().getDayOfYear()>begin.getDayOfYear() && c.getDateOfBirth().getDayOfYear()<end.getDayOfYear()) {
+                c.setBonusPoints(c.getBonusPoints() + bonus);
+            }
+        }
     }
 }
 

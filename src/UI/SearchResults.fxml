@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="UI.SearchResultsController">
+    <VBox>
+        <ScrollPane prefHeight="419.0" prefWidth="900.0">
+            <Label fx:id="result" alignment="TOP_LEFT" textOverrun="CLIP"/>
+        </ScrollPane>
+        <HBox alignment="TOP_CENTER" prefHeight="600" prefWidth="742.0">
+            <TextField fx:id="textToSearch" prefHeight="25.0" prefWidth="275.0" promptText="Text to search"/>
+            <Pane prefHeight="100.0" prefWidth="45.0"/>
+            <Button fx:id="btnSearch" onAction="#btnSearchClick" text="Search"/>
+            <Button fx:id="btnCancel" onAction="#btnCancelClick" text="Cancel"/>
+        </HBox>
+    </VBox>
+</HBox>
